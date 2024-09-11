@@ -1,0 +1,29 @@
+﻿@page "/archived-items"
+
+<h3>Archived Items</h3>
+@if (Items == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Items.Where(i => i.IsArchived))
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => MoveToCurrent(item)">Move to Current</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
